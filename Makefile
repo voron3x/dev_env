@@ -1,5 +1,5 @@
 install: install-bash install-virtualenvwrapper install-pythonrc \
-		 install-bin
+		 install-bin install-vim
 
 install-bin:
 	mkdir -p ~/bin/
@@ -17,3 +17,7 @@ install-virtualenvwrapper:
 
 install-pythonrc:
 	ln -fs `pwd`/python/pythonrc.py ~/.pythonrc.py
+
+install-vim:
+	ln -fs `pwd`/vim/vimrc ~/.vimrc
+	ln -fs `pwd`/vim/vim ~/.vim
