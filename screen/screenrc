@@ -1,0 +1,6 @@
+startup_message off
+
+#caption always
+#caption string "%{kw}%-w%{wr}%n %t%{-}%+w"
+hardstatus alwayslastline
+hardstatus string '%{gk}[ %{G}%H %{g}][%{= kw}%-w%{= BW}%n %t%{-}%+w][%= %{=b kR}(%{W} %h%?(%u)%?%{=b kR} )%{= kw}%=][%{Y}%l%{g}]%{=b C}[ %d.%m.%Y %c:%s ]%{W}'
