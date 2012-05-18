@@ -11,7 +11,7 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-set shell=/bin/bash
+set shell=/usr/local/bin/bash
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -123,7 +123,7 @@ endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Преобразовать Таба в пробелы
+" Преобразовать Табы в пробелы
 set expandtab
 " Размер табуляции по умолчанию
 set shiftwidth=4
@@ -249,10 +249,6 @@ map <leader>bd :Bclose<cr>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
-
-" Use the arrows to something usefull
-map <right> :bn<cr>
-map <left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew<cr>
@@ -413,8 +409,10 @@ map <leader>u :TMiniBufExplorer<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType html set omnifunc=htmlcomplete#CompleteTags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -447,13 +445,46 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+"""""""""""""""""""""""""""""""
+" => XHTML section
+"""""""""""""""""""""""""""""""
+" XHTML (tab width 2 chr, no wrapping)
+au FileType xhtml set sw=2
+au FileType xhtml set ts=2
+au FileType xhtml set sts=2
+au FileType xhtml set textwidth=0
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
+" => HTML section
+"""""""""""""""""""""""""""""""
+" HTML (tab width 2 chr, no wrapping)
+au FileType html set sw=2
+au FileType html set ts=2
+au FileType html set sts=2
+au FileType html set textwidth=0
+
+"""""""""""""""""""""""""""""""
+" => CSS section
+"""""""""""""""""""""""""""""""
+" CSS (tab width 2 chr, wrap at 79th char)
+au FileType css set sw=2
+au FileType css set ts=2
+au FileType css set sts=2
+au FileType css set textwidth=79
+
+"""""""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
+
+
+" JavaScript (tab width 4 chr, wrap at 79th)
+au FileType javascript set sw=4
+au FileType javascript set ts=4
+au FileType javascript set sts=4
+au FileType javascript set textwidth=79
 
 au FileType javascript imap <c-t> AJS.log();<esc>hi
 au FileType javascript imap <c-a> alert();<esc>hi
@@ -511,220 +542,3 @@ map <leader>pp :setlocal paste!<cr>
 
 map <leader>bb :cd ..<cr>
 
-"""""""""""""""OLDDD
-
-"" Ширина строки команд в одну строку
-"set ch=1
-"" Настройка резервных копий файлов
-"set nobackup
-"" set noswapfile
-"" set backup
-"" set backupdir=~/.bak
-"" Фолдинг по отступам
-""set foldmethod=indent
-"" Поиск по набору текста
-"set incsearch
-"" Подсветки найденных вариантов поиска
-"set nohlsearch
-"" Не выгружать буфер когда переключаешься на другой
-"set hidden
-"" Скрыть панель в gui версии
-"set guioptions-=T
-"
-"" Включить автоотступы
-"set autoindent
-""Умные" отступы (например, автоотступ после {)
-"set smartindent
-"
-""set softtabstop=4
-"
-"" Формат строки состояния
-"set statusline=%<%f%h%m%r\ %b\ %{&encoding}-%{&fileencoding}\ 0x\ \ %l,%c%V\ %P
-"set laststatus=2
-"
-"" Опции сессии
-"set sessionoptions=curdir,buffers,tabpages
-""Устанавливаем набор языков для проврки орфографий
-""включаю/выключаю проверку просто через :set spell и :set nospell z= заменить
-""слово
-"set spelllang=ru_yo,en_us
-"
-"" TLIST
-"let Tlist_Exit_OnlyWindow = 1 " exit if taglist is last window open
-"" Настройки для Tlist (показвать только текущий файл в окне навигации по  коду)
-"let g:Tlist_Show_One_File = 1
-"
-"" Настойки если запущен GUI
-"if has("gui_running")
-"  set guifont=DejaVu\ Sans\ Mono\ 11
-"  "let &guicursor = &guicursor . ",a:blinkon0"
-"  set lines=40
-"  set columns=100
-"  set guioptions-=T
-"  set guioptions-=r
-"  set cursorline
-"  colorscheme wombat
-"endif
-"
-"" Настраиваем переключение раскладок клавиатуры по
-"set keymap=russian-jcukenwin
-"" Раскладка по умолчанию - английская
-"set iminsert=0
-"set imsearch=0
-""Подсвечиваем курсок когда выбрана русская раскладка
-"highlight lCursor guifg=NONE guibg=Cyan
-"
-"" Просмотр нетекстовых файлов в Vim -->
-"au BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
-"au BufReadPost *.doc silent %!antiword "%"
-"au BufReadPost *.odt silent %!odt2txt "%"
-"" Просмотр нетекстовых файлов в Vim <--
-"
-"" SRC explorer config
-"" // The switch of the Source Explorer                                         "
-"" nmap <F8> :SrcExplToggle<CR>
-""                                                                              "
-"" // Set the height of Source Explorer window                                  "
-"" let g:SrcExpl_winHeight = 8
-""                                                                              "
-"" // Set 100 ms for refreshing the Source Explorer                             "
-"" let g:SrcExpl_refreshTime = 100
-""                                                                              "
-"" // Set "Enter" key to jump into the exact definition context                 "
-"" let g:SrcExpl_jumpKey = "<ENTER>"
-""                                                                              "
-"" // Set "Space" key for back from the definition context                      "
-"" let g:SrcExpl_gobackKey = "<SPACE>"
-""                                                                              "
-"" // In order to Avoid conflicts, the Source Explorer should know what plugins "
-"" // are using buffers. And you need add their bufname into the list below     "
-"" // according to the command ":buffers!"                                      "
-"let g:SrcExpl_pluginList = [
-"        \ "__Tag_List__",
-"        \ "_NERD_tree_",
-"        \ "Source_Explorer"
-"    \ ]
-""                                                                              "
-"" // Enable/Disable the local definition searching, and note that this is not  "
-"" // guaranteed to work, the Source Explorer doesn't check the syntax for now. "
-"" // It only searches for a match with the keyword according to command 'gd'   "
-"" let g:SrcExpl_searchLocalDef = 1
-""                                                                              "
-"" // Do not let the Source Explorer update the tags file when opening          "
-"" let g:SrcExpl_isUpdateTags = 0
-""                                                                              "
-"" // Use program 'ctags' with argument '--sort=foldcase -R' to create or       "
-"" // update a tags file                                                        "
-"" let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-"" let g:SrcExpl_updateTagsKey = "<F12>"
-"
-"
-""--------------------------
-"" ГОРЯЧИЕ КЛАВИШИ
-""--------------------------
-"
-"" Пробел в нормальном режиме перелистывает страницы
-"nmap <Space> <PageDown>
-"
-"" CTRL-F для omni completion
-"imap <C-F> <C-X><C-O>
-"
-"" F2 - быстрое сохранение
-"nmap <F2> :w<cr>
-"vmap <F2> <esc>:w<cr>
-"imap <F2> <esc>:w<cr>
-"
-"" F3 - просмотр ошибок
-"nmap <F3> :open<cr>
-"vmap <F3> <esc>:copen<cr>
-"imap <F3> <esc>:copen<cr>
-"
-"" F4 - ctags
-"nmap <F4> :TlistToggle<cr>
-"vmap <F4> <esc>:TlistToggle<cr>
-"imap <F4> <esc>:TlistToggle<cr>
-"
-"" F5 - просмотр списка буферов
-"nmap <F5> <Esc>:BufExplorer<cr>
-"vmap <F5> <esc>:BufExplorer<cr>
-"imap <F5> <esc><esc>:BufExplorer<cr>
-"
-"" F6 - предыдущий буфер
-"map <F6> :bp<cr>
-"vmap <F6> <esc>:bp<cr>i
-"imap <F6> <esc>:bp<cr>i
-"
-"" F7 - следующий буфер
-"map <F7> :bn<cr>
-"vmap <F7> <esc>:bn<cr>i
-"imap <F7> <esc>:bn<cr>i
-"
-"" F9 - "Explore" команда
-"map <F9> :Explore<cr>
-"vmap <F9> <esc>:Explore<cr>i
-"imap <F9> <esc>:Explore<cr>i
-"
-"" F10 - удалить буфер
-"map <F10> :bd<cr>
-"vmap <F10> <esc>:bd<cr>
-"imap <F10> <esc>:bd<cr>
-"
-"" Все три плагина 
-"nmap <F8> :TrinityToggleAll<CR>
-"
-"" F11 - обозреватель исходников
-"map <F11> :SrcExplToggle<cr>
-"vmap <F11> <esc>:SrcExplToggle<cr>i
-"imap <F11> <esc>:SrcExplToggle<cr>i
-"
-"" F12 - NERDTree
-"map <F12> :NERDTreeToggle<cr>
-"vmap <F12> <esc>:NERDTreeToggle<cr>i
-"imap <F12> <esc>:NERDTreeToggle<cr>i
-"
-"
-"" < & > - делаем отступы для блоков
-"vmap < <gv
-"vmap > >gv
-"
-"" Выключаем ненавистный режим замены
-"imap >Ins> <Esc>i
-"
-"" Редко когда надо [ без пары =)
-"imap [ []<LEFT>
-"" Аналогично и для {
-"imap {<CR> {<CR>}<Esc>O
-"
-"" С-q - выход из Vim
-"map <C-Q> <Esc>:qa<cr>
-"
-"
-"" Ускоренное передвижение по тексту
-"nmap <C-H> 5h
-"nmap <C-J> 5j
-"nmap <C-K> 5k
-"nmap <C-L> 5l
-"                 
-"
-"" Более привычные Page Up/Down, когда курсор остаётся в той же строке,
-"" а не переносится вверх/вниз экрана, как при стандартном
-""     PgUp/PgDown.
-"" Поскольку по умолчанию прокрутка по C-U/D происходит на
-""         полэкрана,
-"" привязка делается к двойному нажатию этих комбинаций.
-"nmap <PageUp> <C-U><C-U>
-"imap <PageUp> <C-O><C-U><C-O><C-U>
-"nmap <PageDown> <C-D><C-D>
-"imap <PageDown> <C-O><C-D><C-O><C-D>
-"
-"au BufNewFile,BufRead *.tt setf tt2html
-":let b:tt2_syn_tags = '\[% %]'
-"
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType tt2html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType c set omnifunc=ccomplete#Complete
