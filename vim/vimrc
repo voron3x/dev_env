@@ -449,6 +449,7 @@ au FileType python map <buffer> <leader>D ?def
 " => XHTML section
 """""""""""""""""""""""""""""""
 " XHTML (tab width 2 chr, no wrapping)
+au FileType xhtml set noexpandtab
 au FileType xhtml set sw=2
 au FileType xhtml set ts=2
 au FileType xhtml set sts=2
@@ -458,6 +459,7 @@ au FileType xhtml set textwidth=0
 " => HTML section
 """""""""""""""""""""""""""""""
 " HTML (tab width 2 chr, no wrapping)
+au FileType html set noexpandtab
 au FileType html set sw=2
 au FileType html set ts=2
 au FileType html set sts=2
@@ -467,6 +469,7 @@ au FileType html set textwidth=0
 " => CSS section
 """""""""""""""""""""""""""""""
 " CSS (tab width 2 chr, wrap at 79th char)
+au FileType css set noexpandtab
 au FileType css set sw=2
 au FileType css set ts=2
 au FileType css set sts=2
@@ -475,6 +478,7 @@ au FileType css set textwidth=79
 """""""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
+au FileType javascript set noexpandtab
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
@@ -486,7 +490,7 @@ au FileType javascript set ts=4
 au FileType javascript set sts=4
 au FileType javascript set textwidth=79
 
-au FileType javascript imap <c-t> AJS.log();<esc>hi
+au FileType javascript imap <c-t> console.log();<esc>hi
 au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
