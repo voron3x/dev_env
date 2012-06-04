@@ -222,3 +222,9 @@ if [ -e "$HOME/.git-completion.bash" ]; then
 fi;
 
 [[ -s "/Users/dcramer/.rvm/scripts/rvm" ]] && source "/Users/dcramer/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+# My env
+if [ -e "${HOME}/.my_env" ]; then
+    echo "load my_env"
+  source ${HOME}/.my_env
+fi
