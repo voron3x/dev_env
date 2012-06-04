@@ -430,6 +430,14 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
+au FileType python set expandtab
+
+" Python (tab width 4 chr, wrap at 79th)
+au FileType python set sw=4
+au FileType python set ts=4
+au FileType python set sts=4
+au FileType python set textwidth=79
+
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
