@@ -377,6 +377,21 @@ let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 map <leader>o :BufExplorer<cr>
 
+""""""""""""""""""""""""""""""
+" => trinity plugin
+""""""""""""""""""""""""""""""
+map <leader>t :TrinityToggleAll<cr>
+map <leader>ts :TrinityToggleSourceExplorer<cr>
+map <leader>tt :TrinityToggleTagList<cr>
+map <leader>tn :TrinityToggleNERDTree<cr>
+
+""""""""""""""""""""""""""""""
+" => Source Explorer plugin, key bind in trinity plugin
+""""""""""""""""""""""""""""""
+"let g:SrcExpl_winHeight = 8
+let g:SrcExpl_updateTagsKey = "<F12>"
+
+
 """""""""""""""""""""""""""""
 " => TagList plugin for ctags 
 """""""""""""""""""""""""""""
@@ -448,6 +463,7 @@ au FileType python inoremap <buffer> $r return
 au FileType python inoremap <buffer> $i import
 au FileType python inoremap <buffer> $p print
 au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
+
 au FileType python map <buffer> <leader>1 /class
 au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
@@ -524,15 +540,6 @@ map <leader>f :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
-" => Command-T
-""""""""""""""""""""""""""""""
-let g:CommandTMaxHeight = 15
-set wildignore+=*.o,*.obj,.git,*.pyc
-noremap <leader>j :CommandT<cr>
-noremap <leader>y :CommandTFlush<cr>
-
-
-""""""""""""""""""""""""""""""
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
@@ -553,4 +560,5 @@ au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ================================
 map <leader>pp :setlocal paste!<cr>
 
 map <leader>bb :cd ..<cr>
+
 
