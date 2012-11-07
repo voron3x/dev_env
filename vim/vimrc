@@ -1,3 +1,12 @@
+" Check OS
+let os = substitute(system('uname'), "\n", "", "")
+
+if os == "FreeBSD" 
+    let ctags_cmd = "exctags"
+else 
+    let ctags_cmd = "ctags" 
+endif
+
 """"""""""""""""""""
 " => General
 """"""""""""""""""""
@@ -10,8 +19,6 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-set shell=/usr/local/bin/bash
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -76,8 +83,8 @@ set nowrap
 syntax on "Enable syntax hl
 
 " Шрифт
-"set gfn=DejaVu\ Sans\ Mono\ 6
-set gfn=Monospace\ 10
+set gfn=DejaVu\ Sans\ Mono\ 6
+"set gfn=Monospace\ 10
 
 " Включаем 256 цветов
 set t_Co=256
@@ -95,8 +102,8 @@ else
 endif
 
 " Список кодировок файлов для автоопределения
-set fileencodings=utf-8
-set encoding=utf8
+set fileencodings=utf-8,koi8-r
+"set encoding=utf8
 try
     lang ru_RU
 catch
