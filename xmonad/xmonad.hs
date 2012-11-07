@@ -44,7 +44,7 @@ myTerminal      = "mate-terminal"
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 3
+myBorderWidth   = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -137,8 +137,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- toggle the status bar gap
     , ((modMask              , xK_b     ), sendMessage ToggleStruts)
 
-    -- Lauching Firefox Web Browser
-    , ((modMask .|. shiftMask, xK_b     ), spawn "chromium")
+    -- Lauching Google Chrome Web Browser
+    , ((modMask .|. shiftMask, xK_b     ), spawn "google-chrome")
 
     -- Lauching Firefox Web Browser
     , ((modMask .|. shiftMask, xK_f     ), spawn "firefox")
@@ -253,7 +253,7 @@ tabbedLayout = noBorders simpleTabbed
 
 imLayout = withIM (1%3) (roster) chatLayouts
   where
-    roster      = ClassName "Empathy" `And` Role "contact_list" `Or` Title "alex.manaev - Skype™ (Beta)"
+    roster      = ClassName "Pidgin" `And` Role "contact_list" `Or` Title "alex.manaev - Skype™ (Beta)"
     chatLayouts = Grid ||| Full
 
 fullLayout = noBorders Full
@@ -286,7 +286,7 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "Firefox"        --> doF (W.shift "web" )
-    , className =? "Chromium"       --> doF (W.shift "web" )
+    , className =? "Google-chrome"  --> doF (W.shift "web" )
     , className =? "Qutim"          --> doF (W.shift "im"  )
     , className =? "Skype"          --> doF (W.shift "im"  )
     , className =? "Pidgin"         --> doF (W.shift "im"  )
