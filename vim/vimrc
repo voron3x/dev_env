@@ -409,24 +409,19 @@ map <leader>tl :TlistToggle<cr>
 """""""""""""""""""""""""""""
 map <leader>z :NERDTreeToggle<cr>
 
+"""""""""""""""""""""""""""""
+" => Python flake8 plugin
+"""""""""""""""""""""""""""""
+" Flake8 check every time you write a Python file
+autocmd BufWritePost *.py call Flake8()
 
-""""""""""""""""""""""""""""""
-" => Minibuffer plugin
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 25
-let g:miniBufExplSplitBelow=1
+" Add builtins 
+let g:flake8_builtins="_,apply"
 
-let g:bufExplorerSortBy = "name"
+" Global ignore errors
+" let g:flake8_ignore="E501,W293"
 
-autocmd BufRead,BufNew :call UMiniBufExplorer
-
-map <leader>u :TMiniBufExplorer<cr>
-
+au FileType python map <buffer> <leader>c :call Flake8()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
@@ -469,6 +464,7 @@ au BufNewFile,BufRead *.mako set ft=mako
 au FileType python inoremap <buffer> $r return
 au FileType python inoremap <buffer> $i import
 au FileType python inoremap <buffer> $p print
+au FileType python inoremap <buffer> $d import ipdb; ipdb.set_trace()
 au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
 
 au FileType python map <buffer> <leader>1 /class
@@ -510,7 +506,7 @@ au FileType css set textwidth=79
 " => JavaScript section
 """""""""""""""""""""""""""""""
 au FileType javascript set noexpandtab
-au FileType javascript call JavaScriptFold()
+"au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
 
