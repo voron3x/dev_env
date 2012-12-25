@@ -1,5 +1,5 @@
 install: install-bash install-virtualenvwrapper install-pythonrc \
-		 install-bin install-vim install-screen
+	install-bin install-vim install-screen install-xmonad
 
 install-bin:
 	mkdir -p ~/bin/
@@ -24,3 +24,7 @@ install-vim:
 
 install-screen:
 	ln -fs `pwd`/screen/screenrc ~/.screenrc
+
+install-xmonad:
+	mkdir -p ~/.xmonad/
+	ln -fs `pwd`/xmonad/* ~/.xmonad/
