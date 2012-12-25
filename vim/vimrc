@@ -55,6 +55,9 @@ set smartcase
 " Показывать незавершенные команды в статусбаре
 set showcmd
 
+" Убрать меню табов сверху
+set showtabline=0
+
 " Нумерация строк
 set number
 
@@ -91,19 +94,18 @@ set t_Co=256
 
 if has("gui_running")
   set guioptions-=T
-  set background=dark
-  colorscheme wombat
+  set background=light
+  colorscheme solarized
 else
   " Включаем 256 цветов
   set t_Co=256
-  colorscheme wombat
   set background=dark
+  colorscheme solarized
 
 endif
 
 " Список кодировок файлов для автоопределения
 set fileencodings=utf-8,koi8-r
-"set encoding=utf8
 try
     lang ru_RU
 catch
