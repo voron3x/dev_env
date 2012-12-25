@@ -378,6 +378,12 @@ map <leader>p :cp<cr>
 
 
 """"""""""""""""""""""""""""""
+" => pathogen plugin
+""""""""""""""""""""""""""""""
+call pathogen#infect()
+
+
+""""""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
@@ -408,20 +414,6 @@ map <leader>tl :TlistToggle<cr>
 " => NERDTree plugin
 """""""""""""""""""""""""""""
 map <leader>z :NERDTreeToggle<cr>
-
-"""""""""""""""""""""""""""""
-" => Python flake8 plugin
-"""""""""""""""""""""""""""""
-" Flake8 check every time you write a Python file
-autocmd BufWritePost *.py call Flake8()
-
-" Add builtins 
-let g:flake8_builtins="_,apply"
-
-" Global ignore errors
-" let g:flake8_ignore="E501,W293"
-
-au FileType python map <buffer> <leader>c :call Flake8()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
