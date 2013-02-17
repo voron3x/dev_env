@@ -7,6 +7,15 @@ else
     let ctags_cmd = "ctags" 
 endif
 
+""""""""""""""""""""""""""""""
+" => pathogen plugin
+" Должен быть в самом верху для корректной инициализации
+""""""""""""""""""""""""""""""
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+call pathogen#infect()
+
+
 """"""""""""""""""""
 " => General
 """"""""""""""""""""
@@ -80,6 +89,7 @@ set tm=500
 " Не переносить строки
 set nowrap
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -128,6 +138,7 @@ try
     set undofile
 catch
 endtry
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -379,11 +390,6 @@ map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
 
-""""""""""""""""""""""""""""""
-" => pathogen plugin
-""""""""""""""""""""""""""""""
-call pathogen#infect()
-
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
@@ -393,14 +399,6 @@ let g:bufExplorerShowRelativePath=1
 map <leader>o :BufExplorer<cr>
 
 """"""""""""""""""""""""""""""
-" => trinity plugin
-""""""""""""""""""""""""""""""
-map <leader>t :TrinityToggleAll<cr>
-map <leader>ts :TrinityToggleSourceExplorer<cr>
-map <leader>tt :TrinityToggleTagList<cr>
-map <leader>tn :TrinityToggleNERDTree<cr>
-
-""""""""""""""""""""""""""""""
 " => Source Explorer plugin, key bind in trinity plugin
 """"""""""""""""""""""""""""""
 "let g:SrcExpl_winHeight = 8
@@ -408,9 +406,10 @@ let g:SrcExpl_updateTagsKey = "<F12>"
 
 
 """""""""""""""""""""""""""""
-" => TagList plugin for ctags 
+" => Tagbar plugin for ctags 
 """""""""""""""""""""""""""""
-map <leader>tl :TlistToggle<cr>
+let g:tagbar_usearrows = 1
+map <leader>l :TagbarToggle<cr>
 
 """""""""""""""""""""""""""""
 " => NERDTree plugin
