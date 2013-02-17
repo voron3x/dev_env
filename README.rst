@@ -8,6 +8,8 @@ _________
 ::
     make
 
+Note: git submodule init and git submodule update need to be run every time a new submodule is added. git submodule foreach git pull command is used to pull latest upstream changes.
+
 vim
 ___
 
