@@ -12,7 +12,6 @@ endif
 " Должен быть в самом верху для корректной инициализации
 """"""""""""""""""""""""""""""
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-
 call pathogen#infect()
 
 
@@ -89,6 +88,9 @@ set tm=500
 " Не переносить строки
 set nowrap
 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -98,7 +100,7 @@ syntax on "Enable syntax hl
 " Шрифт
 set gfn=DejaVu\ Sans\ Mono\ 6
 "set gfn=Monospace\ 10
-
+"
 " Включаем 256 цветов
 set t_Co=256
 
@@ -195,6 +197,7 @@ function! VisualSearch(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
@@ -317,7 +320,6 @@ set laststatus=2
 " Format the statusline
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
-
 function! CurDir()
     let curdir = substitute(getcwd(), '/home/voron3x/', "~/", "g")
     return curdir
@@ -398,6 +400,7 @@ let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 map <leader>o :BufExplorer<cr>
 
+
 """"""""""""""""""""""""""""""
 " => Source Explorer plugin, key bind in trinity plugin
 """"""""""""""""""""""""""""""
@@ -465,6 +468,7 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+
 """""""""""""""""""""""""""""""
 " => XHTML section
 """""""""""""""""""""""""""""""
@@ -474,6 +478,7 @@ au FileType xhtml set sw=2
 au FileType xhtml set ts=2
 au FileType xhtml set sts=2
 au FileType xhtml set textwidth=0
+
 
 """""""""""""""""""""""""""""""
 " => HTML section
@@ -485,6 +490,7 @@ au FileType html set ts=2
 au FileType html set sts=2
 au FileType html set textwidth=0
 
+
 """""""""""""""""""""""""""""""
 " => CSS section
 """""""""""""""""""""""""""""""
@@ -494,6 +500,7 @@ au FileType css set sw=2
 au FileType css set ts=2
 au FileType css set sts=2
 au FileType css set textwidth=79
+
 
 """""""""""""""""""""""""""""""
 " => JavaScript section
@@ -542,7 +549,6 @@ let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -556,5 +562,3 @@ au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ================================
 map <leader>pp :setlocal paste!<cr>
 
 map <leader>bb :cd ..<cr>
-
-
