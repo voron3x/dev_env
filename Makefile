@@ -1,5 +1,6 @@
 install: install-bash install-virtualenvwrapper install-pythonrc \
-	install-bin install-vim install-screen install-xmonad
+	install-bin install-vim install-screen install-xmonad \
+	install-ctags
 
 install-bin:
 	mkdir -p ~/bin/
@@ -28,3 +29,6 @@ install-screen:
 install-xmonad:
 	mkdir -p ~/.xmonad/
 	ln -fs `pwd`/xmonad/* ~/.xmonad/
+
+install-ctags:
+	ln -fs `pwd`/ctags/ctags ~/.ctags

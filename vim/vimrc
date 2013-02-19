@@ -39,6 +39,11 @@ nmap <leader>w :w!<cr>
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
 
+" Enable automatic title setting for terminals
+set title
+set titleold="Terminal"
+set titlestring=%F\ -\ Vim
+
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
@@ -133,6 +138,9 @@ set ffs=unix,dos,mac "Default file types
 set nobackup
 set nowb
 set noswapfile
+
+" Better modes.  Remeber where we are, support yankring
+set viminfo=!,'100,\"100,:20,<50,s10,h,n~/.viminfo
 
 "Persistent undo
 try
@@ -318,10 +326,10 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}[Line:\ %l/%L:%v][CWD:\ %{CurDir()}][File:\ %f]\ %r%h%w\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/home/voron3x/', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/voron3x', "~/", "g")
     return curdir
 endfunction
 
