@@ -399,6 +399,16 @@ map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
+" => Python Model plugin
+""""""""""""""""""""""""""""""
+" Auto open cwindow if errors be finded
+let g:pymode_lint_cwindow = 0
+
+" Enable python folding
+let g:pymode_folding = 0
+
+
+""""""""""""""""""""""""""""""
 " => Source Explorer plugin, key bind in trinity plugin
 """"""""""""""""""""""""""""""
 "let g:SrcExpl_winHeight = 8
