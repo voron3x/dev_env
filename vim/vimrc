@@ -177,8 +177,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
+map <leader>g :vimgrep //gj ./**/* <left><left><left><left><left><left><left><left><left><left><left>
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -326,7 +325,7 @@ endtry
 set laststatus=2
 
 " Format the statusline
-set statusline=\ %{HasPaste()}[Line:\ %l/%L:%v][CWD:\ %{CurDir()}][File:\ %f]\ %r%h%w\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
+set statusline=\ %{HasPaste()}[Line:\ %l/%L:%v][CWD:\ %{CurDir()}][File:\ %f]\ %r%h%w\ %{fugitive#statusline()}
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/home/voron3x', "~/", "g")
@@ -389,16 +388,6 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
 set guitablabel=%t
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Cope
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Do :help cope if you are unsure what cope is. It's super useful!
-map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
 
 
 """"""""""""""""""""""""""""""
@@ -514,7 +503,7 @@ au FileType css set textwidth=79
 " => JavaScript section
 """""""""""""""""""""""""""""""
 au FileType javascript set noexpandtab
-"au FileType javascript call JavaScriptFold()
+au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
 
@@ -529,6 +518,8 @@ au FileType javascript imap <c-t> console.log();<esc>hi
 au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
+au FileType javascript inoremap <buffer> $c console.log();
+au FileType javascript inoremap <buffer> $d debugger;
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 
 function! JavaScriptFold()
