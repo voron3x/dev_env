@@ -2,7 +2,7 @@
 
 export PROJECT=`python -c "import os;print os.getcwd()"`
 export DJANGO_SETTINGS_MODULE=settings
-export PYTHONPATH=$PROJECT:$PYTHONPATH
+export PYTHONPATH=$PROJECT:$PROJECT/apps:$PYTHONPATH
 
 echo $PROJECT
 echo $DJANGO_SETTINGS_MODULE
