@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 export PROJECT=`python -c "import os;print os.getcwd()"`
+# Для Django 1.5 ищем имя проекта.
+export PROJECT_NAME=`python -c "import os;print os.path.split(os.getcwd())[1]"`
 export DJANGO_SETTINGS_MODULE=settings
-export PYTHONPATH=$PROJECT:$PROJECT/apps:$PYTHONPATH
+export PYTHONPATH=$PROJECT:$PROJECT/apps:$PROJECT/$PROJECT_NAME/apps:$PYTHONPATH
 
 echo $PROJECT
 echo $DJANGO_SETTINGS_MODULE
