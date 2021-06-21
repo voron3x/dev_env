@@ -1,0 +1,53 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data/
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    volumes:
+      - influx-data:/var/lib/influxdb
+  scaler:
+    build: /home/voron3x/devel/scaler
+    image: artifactory.mirantis.com:6555/scaler:dev
+    ports:
+      - "1717:1717"
+      - "3031:3031"
+    depends_on:
+      - redis
+      - postgres
+      - influxdb
+    environment:
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_USER: "postgres"
+      INFLUX_NAME: "scaler"
+      INFLUX_HOST: "influxdb"
+      DOMAIN: "scaler.mirantis.ru"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    depends_on:
+      - scaler
+    volumes:
+      - ./scaler_nginx.conf:/etc/nginx/conf.d/scaler.conf:ro
+volumes:
+  redis-data:
+    driver: local
+  pg-data:
+    driver: local
+  influx-data:
+    driver: local
